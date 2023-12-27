@@ -18,8 +18,11 @@ This guide makes the following assumptions:
 * Installed and updated Proxmox installation
 * NFS Share somehere in your network (preferrably NAS)
 
-## Connect Proxmox to NFS Share
+## Connect to NFS Share
 
+### Linux NFS Connect
+
+### Proxmox NFS Connect
 
 ## Setup LXC Debian Container
 
