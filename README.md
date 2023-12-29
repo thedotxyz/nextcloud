@@ -23,6 +23,21 @@ This guide makes the following assumptions:
 
 ### Linux NFS Connect
 
+'''console
+sudo mkdir /mnt/nfs_share
+sudo mount -t nfs x.x.x.x:/nfs_share /mnt/nfs_share 
+'''
+
+Verify that the share is moutend succesfullie using the mount command:
+'''console
+mount | grep nfs_share 
+'''
+
+You should see something like this:
+'''console
+192.168.1.100:/nfs_share on /mnt/nfs_share type nfs (rw,relatime,vers=3,rsize=1048576,wsize=1048576,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,mountaddr=192.168.1.100,mountvers=3,mountport=20048,mountproto=tcp,local_lock=none,addr=192.168.1.100)
+'''
+
 ### Proxmox NFS Connect
 Follow the following instructions to configure a connection from proxmox to an NFS share (Checked Proxmox v8).
 
