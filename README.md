@@ -23,13 +23,17 @@ This guide makes the following assumptions:
 ### Linux NFS Connect
 
 ### Proxmox NFS Connect
+Follow the following instructions to configure a connection from proxmox to an NFS share (Checked Proxmox v8).
 
 * Login to Proxmox
 * Select 'Datacenter'
 * Select 'Storage'
 * Click 'Add'
 * Select 'NFS'
-* 
+* ID: Type in an ID number (own choice)
+* Server: Type in the Server IP or domain name
+* Export: Select the appropriate share
+* Container: Select types of content. FOr instance: Container and/or Snippets
 
 ## Setup LXC Debian Container
 
