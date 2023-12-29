@@ -24,6 +24,13 @@ This guide makes the following assumptions:
 
 ### Proxmox NFS Connect
 
+* Login to Proxmox
+* Select 'Datacenter'
+* Select 'Storage'
+* Click 'Add'
+* Select 'NFS'
+* 
+
 ## Setup LXC Debian Container
 
 ## Install Docker & Portainer
