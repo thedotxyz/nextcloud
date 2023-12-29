@@ -72,11 +72,6 @@ Follow the following instructions to configure a connection from proxmox to an N
 ```console
 apt update && apt upgrade -y
 ```
-
-* After the system is updated, run the command below to install curl. We will use curl to run the script that installs docker
-
-
-
 ## Install Docker & Portainer
 * Install Curl
 ```console
