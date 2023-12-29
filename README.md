@@ -90,6 +90,11 @@ curl -sSL https://get.docker.com/ | sh
 ```console
 docker run --restart always -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
 ```
+* Check the IP Address of the LXC container
+```console
+ip addr
+```
+
 * After portainer is installed you can access portainer in your browser useing:
 ```console
 http://[CONTAINER_IP]:9000
