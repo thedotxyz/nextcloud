@@ -22,7 +22,7 @@ This guide makes the following assumptions:
 ## Connect to NFS Share
 
 ### Linux NFS Connect
-
+Create a directory where you want to mount the shared directory. For example, we can create a directory called nfs_share in the /mnt directory. And mount the shared directory using the following command:
 ```console
 sudo mkdir /mnt/nfs_share
 sudo mount -t nfs x.x.x.x:/nfs_share /mnt/nfs_share 
