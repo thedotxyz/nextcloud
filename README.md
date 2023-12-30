@@ -95,11 +95,110 @@ ip addr
 http://[CONTAINER_IP]:9000
 ```
 
-## Install MariaDB using docker-compose via Portainer
-
 ## Install Nextcloud using docker-compose via Portainer
 
+### Option 1 - Linuxserver.io
+* Select Stacks, and Add Stack to create a new stack.
+* Create the stack and set the name as 'nextcloud'.
+* Paste the contents below into the web editor.
+```console
+version: "2.1"
+services:
+  nextcloud:
+    image: lscr.io/linuxserver/nextcloud:latest
+    container_name: nextcloud
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - /path/to/appdata:/config
+      - /path/to/data:/data
+    ports:
+      - 443:443
+    restart: unless-stopped
+```
+Parameters:
+-p 443 	WebUI
+-e PUID=1000 	for UserID - see below for explanation
+-e PGID=1000 	for GroupID - see below for explanation
+-e TZ=Etc/UTC 	specify a timezone to use, see this list.
+-v /config 	Nextcloud configs.
+-v /data 	Your personal data.
+
+
+Notes: User / Group Identifiers
+In this instance PUID=1000 and PGID=1000, to find yours use id your_user as below:
+```console
+id your_user
+```
+Example output:
+```console
+uid=1000(your_user) gid=1000(your_user) groups=1000(your_user)
+```
+
+Docker cli
+```console
+docker run -d \
+  --name=nextcloud \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=Etc/UTC \
+  -p 443:443 \
+  -v /path/to/appdata:/config \
+  -v /path/to/data:/data \
+  --restart unless-stopped \
+  lscr.io/linuxserver/nextcloud:latest
+```
+
+### Option 2 - Mariadb and Nextcloud
+* Select Stacks, and Add Stack to create a new stack.
+* Create the stack and set the name as 'nextcloud'.
+* Paste the contents below into the web editor.
+```console
+version: '2'
+
+services:
+  db:
+    image: mariadb:10.5
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - /var/lib/docker/volumes/Nextcloud_Database:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  app:
+    image: nextcloud
+    restart: always
+    ports:
+      - 8080:80
+    links:
+      - db
+    volumes:
+      - /var/lib/docker/volumes/Nextcloud_Application:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=password
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+```
+
+
 ## Install OnlyOffice
+
+## (Optional) Install Watchtower (docker)
+
+* Select Stacks, and Add Stack to create a new stack.
+* Create the stack and set the name as 'w
+* atchtower'.
+* Paste the contents below into the web editor.
+```console
+
+```
 
 ## (Optional Scenario) Cloudflare DDNS
 
